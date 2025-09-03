@@ -1,7 +1,7 @@
 package com.example.Libreria.controller;
 
 import com.example.Libreria.entity.Usuario;
-import com.example.Libreria.repository.UsuarioRepository;
+import com.example.Libreria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @PostMapping
     public Usuario crearUsuario(@RequestBody Usuario usuario) {
-        return usuarioRepository.save(usuario);
+        return usuarioService.save(usuario);
     }
 }
