@@ -26,12 +26,14 @@ public class CalificacionController {
 
     @PostMapping
     public Calificacion calificarLibro(@RequestParam Long libroId, @RequestParam Long usuarioId, @RequestParam int puntuacion) {
+        if (puntuacion < 1 || puntuacion > 5) {
+            throw new IllegalArgumentException("La puntuación debe estar entre 1 y 5.");
+        }
         Libro libro = libroRepository.findById(libroId).orElseThrow();
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
         Calificacion calificacion = new Calificacion(libro, usuario, puntuacion);
         return calificacionRepository.save(calificacion);
-    }
-
+}
     @GetMapping("/libro/{libroId}")
     public List<Calificacion> obtenerCalificacionesPorLibro(@PathVariable Long libroId) {
         return calificacionRepository.findByLibroId(libroId);
