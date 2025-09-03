@@ -2,8 +2,10 @@ package com.example.Libreria.controller;
 
 import com.example.Libreria.entity.Resena;
 import com.example.Libreria.service.ResenaService;
+import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,13 +18,13 @@ public class ResenaController {
     }
 
     @GetMapping("/{libro_id}")
-    public Optional<Resena> buscarResena(@PathVariable Long libro_id) {
-        return resenaService.getResenas(libro_id);
+    public List<Resena> getResenas(@PathVariable Long libro_id) {
+        return resenaService.obtenerResenas(libro_id);
     }
 
     @PostMapping("/save")
-    public void addResena(Long libro_id, Long usuario_id, String resena) {
-        this.resenaService.saveResena(libro_id, usuario_id, resena);
+    public void addResena(@RequestParam Long libroId, @RequestParam Long usuarioId, @RequestParam String resena) {
+        resenaService.saveResena(libroId, usuarioId, resena);
     }
 
 }

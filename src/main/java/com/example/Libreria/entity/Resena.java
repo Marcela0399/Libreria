@@ -19,7 +19,7 @@ public class Resena {
 
     public Resena() {}
 
-    public Resena( Libro libro, Usuario usuario, String resena) {
+    public Resena(Libro libro, Usuario usuario, String resena) {
         this.libro = libro;
         this.usuario = usuario;
         this.resena = resena;
